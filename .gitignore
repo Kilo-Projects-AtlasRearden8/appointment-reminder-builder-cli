@@ -1,0 +1,16 @@
+# Python
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Local data (never commit real appointment data)
+appointments.json
+*.json
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Thumbs
+Thumbs.db
