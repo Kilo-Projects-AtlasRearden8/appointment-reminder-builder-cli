@@ -13,8 +13,9 @@ Files:
 - `cards.py` — printable reminder card renderer (plain text)
 - `ics_gen.py` — ICS calendar event generator (RFC 5545 style)
 - `date_utils.py` — date logic helpers (parse, format, display, past/future/today)
-- `tests/test_date_utils.py` — 7 tests for date logic
-- `README.md` — usage docs, credits Asdale Dynamics, LLC
+- `tests/test_date_utils.py` — date logic tests
+- `tests/test_storage.py` — appointment store tests (add/list/delete/clear/sort/invalid date)
+- `README.md` — beginner-friendly usage docs, credits Asdale Dynamics, LLC
 - `LICENSE` — MIT License, Copyright (c) 2026 Asdale Dynamics, LLC
 - `.gitignore` — excludes Python caches and local storage files
 
@@ -44,13 +45,14 @@ Use `--storage <path>` to keep data in a different JSON file.
 ## Verification results
 
 - `python3 -m py_compile` on all modules: OK
-- `python3 -m pytest`: 7 passed
-- End-to-end CLI exercised: add, list, cards, ics all produce correct
-  output (verified visually: cards formatted with provider/date/notes,
-  ICS output contains VEVENT blocks with UID, DTSTAMP, DTSTART, SUMMARY,
-  DESCRIPTION)
-- Git initialized and committed as c5b2f79 (root commit, plain message,
-  no Co-authored-by trailer). Nothing pushed, no remote created.
+- `python3 -m pytest`: 12 passed (date logic + appointment storage)
+- End-to-end CLI exercised: add, list, cards, ics all produce correct output
+  (cards formatted with provider/date/notes; ICS output contains VEVENT blocks
+  with UID, DTSTAMP, DTSTART, SUMMARY, DESCRIPTION)
+- Invalid date produces a friendly error message and exit code 1 instead of a
+  traceback
+- Git initialized and committed as 7172dd2 (plain message, no
+  Co-authored-by trailer). Nothing pushed, no remote created.
 
 ## Known gaps
 
@@ -60,5 +62,4 @@ Use `--storage <path>` to keep data in a different JSON file.
 - Storage file path defaults to `appointments.json` in the current working
   directory; concurrent writes are not locked
 - No validation beyond date format (e.g., no provider/notes length limits)
-- Tests cover date logic only; CLI commands are verified manually, not by
-  automated tests
+- Appointment storage tests use temp files; no real-data files are committed
