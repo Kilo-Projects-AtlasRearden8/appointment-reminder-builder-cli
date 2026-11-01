@@ -1,16 +1,20 @@
-# Python
-
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-
-# Local data (never commit real appointment data)
-appointments.json
-*.json
 
 # Editor / OS
-.vscode/
-.idea/
+# Local data (never commit real appointment data)
+# Python
+*.json
+*.py[cod]
+*.pyc
+*.pyd
+*.pyo
 .DS_Thumbs
+.env
+.env.*
+.idea/
+.venv/
+.vscode/
 Thumbs.db
+__pycache__/
+appointments.json
+dist/*.tmp
+node_modules/
