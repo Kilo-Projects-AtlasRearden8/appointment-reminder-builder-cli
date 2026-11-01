@@ -5,7 +5,6 @@ emit printable reminder cards and ICS calendar events.
 """
 
 import argparse
-import sys
 
 from cards import write_cards
 from ics_gen import write_ics
@@ -51,7 +50,11 @@ def build_parser():
 
 
 def cmd_add(args, store):
-    record = store.add(args.provider, args.date, args.notes)
+    try:
+        record = store.add(args.provider, args.date, args.notes)
+    except ValueError as exc:
+        print(f"Error: {exc}")
+        raise SystemExit(1)
     print(f"Added appointment {record['id']}: {record['provider']} on {record['date']}")
 
 
